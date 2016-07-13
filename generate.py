@@ -23,6 +23,4 @@ def generate(Q, sigma, N):
     Y = map(lambda x: f(x,Q), X) + noise(sigma, N)
     return [X,Y]
 
-for N in range(20,120,5):
-    for sigma in range(0,200,5):
-        generate(20,sigma/100.,N)
+
