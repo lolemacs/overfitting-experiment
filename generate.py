@@ -21,6 +21,7 @@ def noise(sigma, n):
 def generate(Q, sigma, N):
     X = np.random.uniform(low=-1, high = 1, size = N)
     Y = map(lambda x: f(x,Q), X) + noise(sigma, N)
+    #Y = np.array(map(lambda x: 8.3 * x **17, X))
     return [X,Y]
 
 
