@@ -1,5 +1,6 @@
 import math
 import numpy as np
+import numpy.polynomial.legendre as leg
 
 def L(x, k):
     l = [1, x]
@@ -19,9 +20,13 @@ def noise(sigma, n):
     return np.random.normal(size=n) * sigma
     
 def generate(Q, sigma, N):
+    #generates N random points in the [-1,+1] interval
     X = np.random.uniform(low=-1, high = 1, size = N)
-    Y = map(lambda x: f(x,Q), X) + noise(sigma, N)
-    #Y = np.array(map(lambda x: 8.3 * x **17, X))
+
+    #get random coefficients and generates the Legendre polynomio
+    coefs = get_coefs(Q+1)
+    legPol = leg.Legendre(coefs)
+
+    #calculates target values for each x \in X (also adding noise)
+    Y = map(lambda x: legPol(x), X) + noise(sigma, N)
     return [X,Y]
-
-
