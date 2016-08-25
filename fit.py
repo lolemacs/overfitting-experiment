@@ -17,7 +17,7 @@ debug = False
 
 reps = 2
 step = 5
-nTestSamples = 200
+nTestSamples = 1000
 
 Z = []
 for rep in range(reps):
