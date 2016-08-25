@@ -15,9 +15,9 @@ nIters = (120-20)/5 * (200-0)/5
 dump = []
 debug = False
 
-reps = 2
+reps = 30
 step = 5
-nTestSamples = 1000
+nTestSamples = 200
 
 Z = []
 for rep in range(reps):
@@ -51,8 +51,8 @@ for rep in range(reps):
                 err10 = ((h10.predict(trainX) - trainY)**2).mean()
 
             else:
-                err2 = ((h2.predict(testX) - testY)**2).mean()
-                err10 = ((h10.predict(testX) - testY)**2).mean()
+                err2 = ((np.clip(h2.predict(testX),-10,10) - testY)**2).mean()
+                err10 = ((np.clip(h10.predict(testX),-10,10) - testY)**2).mean()
 
             dump.append(err10)
 
@@ -64,7 +64,12 @@ for rep in range(reps):
     Z.append(z)
 
 Z = np.array(Z)
+
+print Z.max(), Z.min()
+
 Z = Z.mean(axis=0)
+
+print Z
 
 Z = np.clip(Z, -.2, .2)
 #print max(dump)
