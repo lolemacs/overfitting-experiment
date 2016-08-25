@@ -65,11 +65,11 @@ for rep in range(reps):
 
 Z = np.array(Z)
 
-print Z.max(), Z.min()
+#print Z.max(), Z.min()
 
 Z = Z.mean(axis=0)
 
-print Z
+#print Z
 
 Z = np.clip(Z, -.2, .2)
 #print max(dump)
