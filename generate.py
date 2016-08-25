@@ -9,7 +9,7 @@ def get_coefs(k):
 
 def noise(sigma, n):
     #return gaussian noise with sigma std
-    return np.random.normal(size=n) * sigma
+    return np.random.randn(n) * sigma
 
 def genNormalizedLeg(coefs):
     #generates a legendre polynomio with given coefficients
@@ -23,7 +23,7 @@ def genNormalizedLeg(coefs):
     legPol /= math.sqrt(norm)
     return legPol
 
-def generate(Q, sigma, N):
+def generate(Q, var, N):
     #generates N random points in the [-1,+1] interval
     X = np.random.uniform(low=-1, high = 1, size = N)
 
@@ -34,7 +34,7 @@ def generate(Q, sigma, N):
     legPol = genNormalizedLeg(coefs)
 
     #calculates target values for each x \in X (also adding noise)
-    Y = map(lambda x: legPol(x), X) + noise(sigma, N)
+    Y = map(lambda x: legPol(x), X) + noise(math.sqrt(var), N)
 
     return [X,Y, legPol]
 
