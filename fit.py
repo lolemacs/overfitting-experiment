@@ -17,7 +17,7 @@ nIters = (120-20)/5 * (200-0)/5
 dump = []
 debug = False
 
-reps = 30
+reps = 50
 step = 5
 nTestSamples = 200
 
@@ -61,7 +61,7 @@ for rep in range(reps):
             #dump.append(err10)
 
             i += 1
-            if i in range(0, nIters, nIters/10): print float(i)/nIters
+            if i in range(0, nIters, nIters/10): print "%s: %s"%(rep,float(i)/nIters)
             row.append(err10 - err2)
         z.insert(0,row)
     #z = np.clip(z, -2.0, 2.0)
