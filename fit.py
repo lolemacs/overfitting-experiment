@@ -6,6 +6,8 @@ from sklearn.pipeline import make_pipeline
 from sklearn.metrics import f1_score, accuracy_score
 import matplotlib.pyplot as plt
 from matplotlib import cm
+import cPickle
+import random
 
 h2 = make_pipeline(PolynomialFeatures(2), LinearRegression())
 h10 = make_pipeline(PolynomialFeatures(10), LinearRegression())
@@ -67,7 +69,8 @@ for rep in range(reps):
 
 Z = np.array(Z)
 
-print Z.shape
+with open("%s-%s.pkl"%(random.randint(0,9999999),Z.shape[0]),"wb") as f:
+    cPickle.dump(Z,f)
 
 #print Z.max(), Z.min()
 
