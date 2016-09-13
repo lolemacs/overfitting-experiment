@@ -51,19 +51,23 @@ for rep in range(reps):
                 err10 = ((h10.predict(trainX) - trainY)**2).mean()
 
             else:
-                err2 = ((np.clip(h2.predict(testX),-10,10) - testY)**2).mean()
-                err10 = ((np.clip(h10.predict(testX),-10,10) - testY)**2).mean()
+                #err2 = ((np.clip(h2.predict(testX),-10,10) - testY)**2).mean()
+                #err10 = ((np.clip(h10.predict(testX),-10,10) - testY)**2).mean()
+                err2 = ((h2.predict(testX) - testY)**2).mean()
+                err10 = ((h10.predict(testX) - testY)**2).mean()
 
-            dump.append(err10)
+            #dump.append(err10)
 
             i += 1
             if i in range(0, nIters, nIters/10): print float(i)/nIters
             row.append(err10 - err2)
         z.insert(0,row)
-    z = np.clip(z, -2.0, 2.0)
+    #z = np.clip(z, -2.0, 2.0)
     Z.append(z)
 
 Z = np.array(Z)
+
+print Z.shape
 
 #print Z.max(), Z.min()
 
