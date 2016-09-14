@@ -9,6 +9,8 @@ from matplotlib import cm
 import cPickle
 import random
 
+import time
+
 h2 = make_pipeline(PolynomialFeatures(2), LinearRegression())
 h10 = make_pipeline(PolynomialFeatures(10), LinearRegression())
 
@@ -17,9 +19,9 @@ nIters = (120-20)/5 * (200-0)/5
 dump = []
 debug = False
 
-reps = 50
+reps = 2300
 step = 5
-nTestSamples = 200
+nTestSamples = 10000
 
 Z = []
 for rep in range(reps):
@@ -57,7 +59,23 @@ for rep in range(reps):
                 #err10 = ((np.clip(h10.predict(testX),-10,10) - testY)**2).mean()
                 err2 = ((h2.predict(testX) - testY)**2).mean()
                 err10 = ((h10.predict(testX) - testY)**2).mean()
+ 
+            def E(p):
+                integ = p.integ()
+                return (integ(1) - integ(-1))/2
 
+            print E(legPol)
+
+            coefs2 = h2.named_steps['linearregression'].coef_
+            coefs10 = h10.named_steps['linearregression'].coef_
+            fit2 = np.polynomial.Polynomial(coefs2[0])
+            fit10 = np.polynomial.Polynomial(coefs10[0])
+            #print fit2, legPol
+            aerr2 = E(fit2**2) + 2 * E(fit2) * E(legPol) + E(legPol**2)
+            aerr10 = E(fit10**2) + 2 * E(fit10) * E(legPol) + E(legPol**2)
+            print "Analytical error: ", aerr10 - aerr2
+            print "Empirical error: ", err10 - err2
+            quit()
             #dump.append(err10)
 
             i += 1
