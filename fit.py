@@ -19,9 +19,9 @@ nIters = (120-20)/5 * (200-0)/5
 dump = []
 debug = False
 
-reps = 3
+reps = 2000
 step = 5
-nTestSamples = 100
+nTestSamples = 200
 
 Z = []
 for rep in range(reps):
@@ -64,13 +64,13 @@ for rep in range(reps):
 
             #print E(legPol)
 
-            coefs2 = h2.named_steps['linearregression'].coef_
-            coefs10 = h10.named_steps['linearregression'].coef_
-            fit2 = np.polynomial.Polynomial(coefs2[0])
-            fit10 = np.polynomial.Polynomial(coefs10[0])
+            #coefs2 = h2.named_steps['linearregression'].coef_
+            #coefs10 = h10.named_steps['linearregression'].coef_
+            #fit2 = np.polynomial.Polynomial(coefs2[0])
+            #fit10 = np.polynomial.Polynomial(coefs10[0])
             
-            aerr2 = E(fit2**2) + 2 * E(fit2) * E(legPol) + E(legPol**2)
-            aerr10 = E(fit10**2) + 2 * E(fit10) * E(legPol) + E(legPol**2)
+            #aerr2 = E(fit2**2) + 2 * E(fit2) * E(legPol) + E(legPol**2)
+            #aerr10 = E(fit10**2) + 2 * E(fit10) * E(legPol) + E(legPol**2)
 
             #print "Analytical error: ", aerr10 - aerr2
             #print "Empirical error: ", err10 - err2
@@ -78,7 +78,7 @@ for rep in range(reps):
 
             i += 1
             if i in range(0, nIters, nIters/10): print "%s: %s"%(rep,float(i)/nIters)
-            row.append(aerr10 - aerr2)
+            row.append(err10 - err2)
         z.insert(0,row)
     #z = np.clip(z, -2.0, 2.0)
     Z.append(z)
@@ -87,8 +87,8 @@ Z = np.array(Z)
 
 #quit()
 
-#with open("%s-%s.pkl"%(random.randint(0,9999999),Z.shape[0]),"wb") as f:
-#    cPickle.dump(Z,f)
+with open("%s-%s.pkl"%(random.randint(0,9999999),Z.shape[0]),"wb") as f:
+    cPickle.dump(Z,f)
 
 Z = Z.mean(axis=0)
 
