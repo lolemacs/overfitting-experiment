@@ -14,7 +14,7 @@ import time
 h2 = make_pipeline(PolynomialFeatures(2), LinearRegression())
 h10 = make_pipeline(PolynomialFeatures(10), LinearRegression())
 
-nIters = (120-20)/5 * (200-0)/5
+nIters = (120-20)/5 * (100-0)/5
 
 dump = []
 debug = False
@@ -27,10 +27,10 @@ Z = []
 for rep in range(reps):
     i = 0
     z = []
-    for Q in range(10,100,step):
+    for Q in range(0,100,step):
         row = []
         for N in range(20,120,step):
-            X, Y, legPol = generate.generate(Q, 1., N + nTestSamples)
+            X, Y, legPol = generate.generate(Q, .1, N + nTestSamples)
 
             X = X.reshape(-1,1)
             Y = Y.reshape(-1,1)
