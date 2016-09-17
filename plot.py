@@ -15,7 +15,8 @@ for fileName in fileNames:
             else: Z = np.concatenate((Z,cPickle.load(f)),axis=0)
 print Z.shape
 
-Z = Z.mean(axis=0)
+#Z = Z.median(axis=0)
+Z = np.median(Z,axis=0)
 
 #print Z
 
@@ -41,7 +42,8 @@ for fileName in fileNames:
             else: Z = np.concatenate((Z,cPickle.load(f)),axis=0)
 print Z.shape
 
-Z = Z.mean(axis=0)
+#Z = Z.median(axis=0)
+Z = np.median(Z,axis=0)
 
 #print Z
 
