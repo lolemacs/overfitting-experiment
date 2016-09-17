@@ -19,7 +19,7 @@ nIters = (120-20)/5 * (200-0)/5
 dump = []
 debug = False
 
-reps = 5
+reps = 2000
 step = 5
 nTestSamples = 200
 
