@@ -1,5 +1,3 @@
-# overfitting-experiment
-
 ##Requirements
 
 - Python = 2.7
