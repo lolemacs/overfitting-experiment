@@ -2,12 +2,12 @@
 
 ##Requirements
 
-Python = 2.7
+- Python = 2.7
 
 Python dependencies:
-  Numpy
-  Sklearn
-  Matplotlib
+- Numpy
+- Sklearn
+- Matplotlib
   
 
 The easiest way to install them is via pip. Pip can be installed on Ubuntu with the default package manager:
