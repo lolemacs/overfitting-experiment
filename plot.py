@@ -3,7 +3,6 @@ from os.path import isfile, join
 import numpy as np
 import cPickle
 import matplotlib.pyplot as plt
-from scipy import stats
 from matplotlib import cm
 
 fileNames = [f for f in listdir(".") if isfile(join(".", f))]
@@ -18,7 +17,13 @@ for fileName in fileNames:
             else: Z = np.concatenate((Z,cPickle.load(f)),axis=0)
 print Z.shape
 
-Z = np.mean(Z,axis=0)
+zstd = Z.std(axis=0)
+zmean = Z.mean(axis=0)
+
+#for i in range(Z.shape[0]):
+#    Z[i][Z[i] >  zmean + 5 * zstd] = np.NaN
+
+Z = np.nanmean(Z,axis=0)
 #Z = np.median(Z,axis=0)
 
 #print Z
@@ -27,7 +32,7 @@ Z = np.clip(Z, -.2, .2)
 #print max(dump)
 
 fig, ax = plt.subplots()
-cax = ax.imshow(Z, interpolation='bicubic', cmap=cm.viridis, extent=[20,120,0,200])
+cax = ax.imshow(Z, interpolation='bicubic', cmap=cm.jet, extent=[20,120,0,200])
 ax.set_title("Stochastic Noise")
 ax.set_xlabel("Number of data points")
 ax.set_ylabel("Noise x 100")
