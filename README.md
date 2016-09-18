@@ -12,17 +12,13 @@ Python dependencies:
 
 The easiest way to install them is via pip. Pip can be installed on Ubuntu with the default package manager:
 
-`sudo apt-get install pip`
+`sudo apt-get install python-pip`
 
 The dependencies can be further installed with:
 
-`sudo pip install numpy`
+`sudo pip install numpy sklearn matplotlib`
 
-`sudo pip install sklearn`
-
-`sudo pip install matplotlib`
-
-##Instruction
+##Description
 
 The project is composed of 4 files.
 
@@ -31,6 +27,8 @@ generate.py: constains helper functions to generate datasets
 fit.py, fit2.py: files that run each experiment (stochastic noise and deterministic noise, respectively)
 
 plot.py: plots the results for both experiments
+
+##Instructions
 
 fit.py and fit2.py can be run via
 
