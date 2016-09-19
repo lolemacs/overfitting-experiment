@@ -15,7 +15,7 @@ h10 = make_pipeline(PolynomialFeatures(10), LinearRegression())
 
 nIters = (120-20)/5 * (200-0)/5
 
-reps = 2000
+reps = 4000
 step = 5
 nTestSamples = 200
 

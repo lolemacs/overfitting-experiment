@@ -4,6 +4,7 @@ import numpy as np
 import cPickle
 import matplotlib.pyplot as plt
 from matplotlib import cm
+from scipy.signal import medfilt2d
 
 fileNames = [f for f in listdir(".") if isfile(join(".", f))]
 Z = []
@@ -17,14 +18,16 @@ for fileName in fileNames:
             else: Z = np.concatenate((Z,cPickle.load(f)),axis=0)
 print Z.shape
 
-zstd = Z.std(axis=0)
-zmean = Z.mean(axis=0)
+#zstd = Z.std(axis=0)
+#zmean = Z.mean(axis=0)
 
 #for i in range(Z.shape[0]):
 #    Z[i][Z[i] >  zmean + 5 * zstd] = np.NaN
 
 Z = np.nanmean(Z,axis=0)
 #Z = np.median(Z,axis=0)
+
+#Z = medfilt2d(Z)
 
 #print Z
 
